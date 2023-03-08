@@ -1,4 +1,4 @@
-package com.example.c482;
+package Model;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -1,8 +1,9 @@
-module com.example.c482 {
+module Model {
     requires javafx.controls;
     requires javafx.fxml;
 
 
-    opens com.example.c482 to javafx.fxml;
-    exports com.example.c482;
+    opens Model to javafx.fxml;
+    exports Model;
+
 }

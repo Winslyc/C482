@@ -1,4 +1,4 @@
-package com.example.c482;
+package Model;
 
 public class ModifyPart {
 }

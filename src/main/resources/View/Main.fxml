@@ -11,7 +11,7 @@
 <!-- A.1 -->
 
 
-<AnchorPane prefHeight="361.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.c482.Main">
+<AnchorPane prefHeight="361.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Model.Main">
    <children>
       <Pane layoutX="25.0" layoutY="83.0" prefHeight="241.0" prefWidth="407.0" style="-fx-background-color: ivory;">
          <children>
