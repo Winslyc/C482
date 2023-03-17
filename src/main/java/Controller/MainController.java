@@ -2,6 +2,7 @@ package Controller;
 import Main.Main;
 import Model.Inventory;
 import Model.Part;
+import Model.Product;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import  javafx.fxml.FXML;
@@ -45,6 +46,26 @@ public class MainController implements Initializable {
      */
     @FXML private TextField partSearchTextField;
     //Product Table
+    /**
+     * The Product Table View
+     */
+    @FXML private TableView<Product> ProductsTableView;
+    /**
+     * The Product table ID Column
+     */
+    @FXML private TableColumn<Product, Integer> productIdColumn;
+    /**
+     * The Product Name Column
+     */
+    @FXML private TableColumn<Product, String > productNameColumn;
+    /**
+     * The Product Inventory Column
+     */
+    @FXML private TableColumn<Product, Integer> inventoryLevelColumn;
+    /**
+     * The Product Price Column
+     */
+    @FXML private TableColumn<Product, Double> productPriceColumn;
     @FXML
     protected void onAddPartClicked(ActionEvent event) throws IOException {
     Parent parent =FXMLLoader.load(getClass().getResource("/View/AddPart.fxml"));
@@ -99,5 +120,10 @@ public class MainController implements Initializable {
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
 
         // Fills Product Table View
+        ProductsTableView.setItems(Inventory.getAllProducts());
+        productIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        productNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        inventoryLevelColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        productPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 }
