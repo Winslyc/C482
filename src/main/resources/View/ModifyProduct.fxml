@@ -48,8 +48,8 @@
                 </TableView>
                 <Button layoutX="669.0" layoutY="182.0" mnemonicParsing="false" text="Add" />
                 <Button layoutX="375.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="151.0" text="Remove Associated Model.Part" />
-                <Button layoutX="561.0" layoutY="403.0" mnemonicParsing="false" text="Save" />
-                <Button layoutX="655.0" layoutY="403.0" mnemonicParsing="false" text="Cancel" />
+                <Button fx:id="saveButton" layoutX="561.0" layoutY="403.0" mnemonicParsing="false" onAction="#onSaveButtonClicked" text="Save" />
+                <Button fx:id="cancelButton" layoutX="655.0" layoutY="403.0" mnemonicParsing="false" onAction="#onCancelButtonClicked" text="Cancel" />
             <Text layoutX="31.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modify Product" wrappingWidth="215.73669052124023" />
             </children>
         </Pane>

@@ -13,11 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MainController {
-
-
-
-
+public class MainController{
     @FXML
     protected void onAddPartClicked(ActionEvent event) throws IOException {
     Parent parent =FXMLLoader.load(getClass().getResource("/View/AddPart.fxml"));

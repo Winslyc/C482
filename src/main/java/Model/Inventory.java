@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Inventory {
+    private static int partId = 0;
+    private  static  int productId=0;
     private static ObservableList<Part> allParts = FXCollections.observableArrayList();
     private static  ObservableList<Product> allProducts = FXCollections.observableArrayList();
 
@@ -21,7 +23,7 @@ public class Inventory {
         allParts.add(part);
     }
     public static void addProduct(Product product){
-        allProducts.add( product);
+        allProducts.add(product);
     }
     public static Part lookupPart(int id){
         return null;
@@ -34,6 +36,13 @@ public class Inventory {
     }
     public static void updateProduct(int id, Product selectedPart){
 
+    }
+
+    public static int getNewPartID(){
+        return ++partId;
+    }
+    public  static int getNewProductID(){
+        return ++productId;
     }
     public static boolean deletePart(Part selectedPart){
         return false;
