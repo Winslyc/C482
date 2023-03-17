@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,18 +19,32 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
-    @FXML
-    TableView <Part> partTableView;
-    @FXML
-    TableColumn<Part, Integer> partID;
-    @FXML
-    TableColumn<Part, String> partName;
-    @FXML
-    TableColumn<Part, Integer> inventoryLevel;
-    @FXML
-    TableColumn<Part, Double> priceColumn;
-    @FXML
-    TextField partSearchTextField;
+    //Parts Table
+    /**
+     * The Parts Table View
+     */
+    @FXML private TableView <Part> partTableView;
+    /**
+     * The ID table Column
+     */
+    @FXML private TableColumn<Part, Integer> partID;
+    /**
+     * The Name table Column
+     */
+    @FXML private TableColumn<Part, String> partName;
+    /**
+     * The Parts inventory column
+     */
+    @FXML private TableColumn<Part, Integer> inventoryLevel;
+    /**
+     * The parts Price Column
+     */
+    @FXML private TableColumn<Part, Double> priceColumn;
+    /**
+     * The Parts search TextField
+     */
+    @FXML private TextField partSearchTextField;
+    //Product Table
     @FXML
     protected void onAddPartClicked(ActionEvent event) throws IOException {
     Parent parent =FXMLLoader.load(getClass().getResource("/View/AddPart.fxml"));
@@ -68,8 +83,21 @@ public class MainController implements Initializable {
         Platform.exit();
     }
 
+    /**
+     * Initializes  Table View and allows parts to be added and seen with the observable list.
+     *
+     * @param location Location resolves relative paths and the root for an object.
+     * @param resources The resources that localize a root object.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Fills Part TableView
+        partTableView.setItems(Inventory.getAllParts());
+        partID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        partName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        inventoryLevel.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
 
+        // Fills Product Table View
     }
 }

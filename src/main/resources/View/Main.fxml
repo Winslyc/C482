@@ -16,12 +16,12 @@
          <children>
             <TextField layoutX="215.0" layoutY="14.0" prefHeight="25.0" prefWidth="178.0" promptText="Search by part ID or Name" />
             <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parts" wrappingWidth="65.33673095703125" />
-            <TableView layoutX="12.0" layoutY="50.0" prefHeight="143.0" prefWidth="384.0">
+            <TableView id="partTableView" fx:id="partTableView" layoutX="12.0" layoutY="50.0" prefHeight="143.0" prefWidth="384.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Part ID" />
-                <TableColumn prefWidth="75.0" text="Part Name" />
-                  <TableColumn prefWidth="96.79991149902344" text="Inventory Level" />
-                  <TableColumn prefWidth="136.800048828125" text="Price / Cost Per Unit" />
+                <TableColumn fx:id="partID" prefWidth="75.0" text="Part ID" />
+                <TableColumn fx:id="partName" prefWidth="75.0" text="Part Name" />
+                  <TableColumn fx:id="inventoryLevel" prefWidth="96.79991149902344" text="Inventory Level" />
+                  <TableColumn fx:id="priceColumn" prefWidth="136.800048828125" text="Price / Cost Per Unit" />
               </columns>
             </TableView>
             <Button fx:id="AddButton" layoutX="215.0" layoutY="203.0" mnemonicParsing="false" onAction="#onAddPartClicked" text="Add" />
