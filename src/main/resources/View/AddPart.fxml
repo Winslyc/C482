@@ -10,7 +10,7 @@
 
 <!-- A.2 -->
 
-<AnchorPane prefHeight="550.0" prefWidth="399.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddPartController">
+<AnchorPane prefHeight="550.0" prefWidth="399.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddPartController">
    <children>
       <Pane prefHeight="556.0" prefWidth="399.0">
          <children>
@@ -32,7 +32,7 @@
             <TextField fx:id="maxTextField" layoutX="126.0" layoutY="300.0" prefHeight="26.0" prefWidth="151.0" promptText="Maximum" />
             <TextField fx:id="machineIdTextField" layoutX="126.0" layoutY="400.0" prefHeight="26.0" prefWidth="151.0" promptText="00000" />
             <TextField fx:id="inventoryTextField" layoutX="126.0" layoutY="200.0" promptText="Inventory" />
-            <Button fx:id="saveButton" layoutX="216.0" layoutY="499.0" mnemonicParsing="false" onAction="#onSaveButtonClicked" text="Save" />
+            <Button fx:id="saveButton" layoutX="216.0" layoutY="499.0" mnemonicParsing="false" onAction="#saveButtonEvent" text="Save" />
             <Button fx:id="cancelButton" layoutX="305.0" layoutY="499.0" mnemonicParsing="false" onAction="#onCancelButtonClicked" text="Cancel" />
             <Text layoutX="14.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Min" wrappingWidth="70.13671875" />
             <TextField fx:id="minTextField" layoutX="126.0" layoutY="350.0" promptText="Minimum" />

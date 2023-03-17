@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -55,15 +52,14 @@ public class AddPartController {
     }
     @FXML
     public void onCancelButtonClicked(ActionEvent event) throws IOException {
+        Alert cancelAlert =new Alert(Alert.AlertType.WARNING);
+        cancelAlert.setContentText("You are being redirected back to the main application");
+        cancelAlert.showAndWait();
         returnToMainScreen(event);
 
     }
 
-    @FXML
-    public void onSaveButtonClicked(ActionEvent event) throws IOException{
-        returnToMainScreen(event);
 
-    }
     @FXML
     public void radioButtonsToggled(){
         if(tgPartType.getSelectedToggle() == inHouseRadioButton) {
@@ -77,11 +73,114 @@ public class AddPartController {
         }
 
     }
-    public void createPart(){
 
+@FXML
+    public void saveButtonEvent(ActionEvent event) throws  IOException{
+        try {
+            int id = 0;
+            String name = nameTextField.getText();
+            Double price = Double.parseDouble(priceTextField.getText());
+            int stock = Integer.parseInt(inventoryTextField.getText());
+            int min = Integer.parseInt(minTextField.getText());
+            int max = Integer.parseInt(maxTextField.getText());
+            int machineId;
+            String companyName;
+            boolean saveSuccessful = false;
+
+
+            if(name.isEmpty()){
+                displayAlert(5);
+            } else {
+                if(checkMin(min, max) && checkInventory(min, max, stock)){
+                    if(inHouseRadioButton.isSelected()){
+                        try{
+                            machineId = Integer.parseInt(machineIdTextField.getText());
+                            InHouse newInhousePart = new InHouse(id, name, price, stock, min, max, machineId);
+                            newInhousePart.setId(Inventory.getNewPartID());
+                            Inventory.addPart(newInhousePart);
+                            saveSuccessful = true;
+                        }
+                        catch (Exception e){
+                            displayAlert(2);
+                        }
+                    }
+                    if(outSourcedRadioButton.isSelected()){
+
+                            companyName = machineIdTextField.getText();
+                            Outsourced newOutsourcedPart = new Outsourced(id, name, price, stock, min, max, companyName);
+                            newOutsourcedPart.setId(Inventory.getNewPartID());
+                            Inventory.addPart(newOutsourcedPart);
+                            saveSuccessful = true;
+                        }
+                        if(saveSuccessful = true){
+                            returnToMainScreen(event);
+                        }
+                    }
+                }
+
+
+        } catch (Exception e){
+            displayAlert(1);
+        }
     }
 
-    public void saveButtonEvent(ActionEvent event){
-
+    private boolean checkInventory(int min, int max, int stock) {
+        boolean isValid = true;
+        if(stock > max  || stock < min ) {
+            isValid = false;
+            displayAlert(4);
+        }
+        return isValid;
     }
+
+    private boolean checkMin(int min, int max) {
+        boolean isValid = true;
+        if(min <= 0 || min >= max){
+            isValid = false;
+            displayAlert(3);
+        }
+
+        return isValid;
+    }
+
+    private void displayAlert(int displayAlert) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        switch(displayAlert) {
+
+                case 1:
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Error Adding Part");
+                    alert.setContentText("Form contains blank fields or invalid values.");
+                    alert.showAndWait();
+                    break;
+                case 2:
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Invalid value for Machine ID");
+                    alert.setContentText("Machine ID may only contain numbers.");
+                    alert.showAndWait();
+                    break;
+                case 3:
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Invalid value for Min");
+                    alert.setContentText("Min must be a number greater than 0 and less than Max.");
+                    alert.showAndWait();
+                    break;
+                case 4:
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Invalid value for Inventory");
+                    alert.setContentText("Inventory must be a number equal to or between Min and Max.");
+                    alert.showAndWait();
+                    break;
+                case 5:
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Name Empty");
+                    alert.setContentText("Name cannot be empty.");
+                    alert.showAndWait();
+                    break;
+            }
+        }
 }
+
+
+
+
