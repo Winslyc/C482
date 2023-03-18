@@ -1,5 +1,4 @@
 package Controller;
-import Main.Main;
 import Model.Inventory;
 import Model.Part;
 import Model.Product;
@@ -20,6 +19,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
+    private static Part partToModify;
     //Parts Table
     /**
      * The Parts Table View
@@ -28,6 +28,7 @@ public class MainController implements Initializable {
     /**
      * The ID table Column
      */
+
     @FXML private TableColumn<Part, Integer> partID;
     /**
      * The Name table Column
@@ -76,15 +77,64 @@ public class MainController implements Initializable {
 
     }
     @FXML
-    protected void onModifyPartClicked(ActionEvent event) throws IOException{
-        Parent parent = FXMLLoader.load(getClass().getResource("/View/ModifyPart.fxml"));
-        Scene scene = new Scene(parent);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+    private void onDeleteClicked(){
+        Inventory.deletePart(partTableView.getItems().get(partTableView.getSelectionModel().getSelectedItem().getId()-1));
+        System.out.println( partTableView.getSelectionModel().getSelectedItem().getId());
+
     }
     @FXML
+    protected void onModifyPartClicked(ActionEvent event) throws IOException {
+        partToModify = partTableView.getSelectionModel().getSelectedItem();
+        if (partToModify == null) {
+            displayAlert(3);
+        } else {
+            Parent parent = FXMLLoader.load(getClass().getResource("/View/ModifyPart.fxml"));
+            Scene scene = new Scene(parent);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
+        private void displayAlert(int alertType) {
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            Alert alertError = new Alert(Alert.AlertType.ERROR);
+
+            switch (alertType) {
+                case 1:
+                    alert.setTitle("Information");
+                    alert.setHeaderText("Part not found");
+                    alert.showAndWait();
+                    break;
+                case 2:
+                    alert.setTitle("Information");
+                    alert.setHeaderText("Product not found");
+                    alert.showAndWait();
+                    break;
+                case 3:
+                    alertError.setTitle("Error");
+                    alertError.setHeaderText("Part not selected");
+                    alertError.showAndWait();
+                    break;
+                case 4:
+                    alertError.setTitle("Error");
+                    alertError.setHeaderText("Product not selected");
+                    alertError.showAndWait();
+                    break;
+                case 5:
+                    alertError.setTitle("Error");
+                    alertError.setHeaderText("Parts Associated");
+                    alertError.setContentText("All parts must be removed from product before deletion.");
+                    alertError.showAndWait();
+                    break;
+            }
+        }
+
+
+
+    @FXML
     protected void onModifyProductClicked(ActionEvent event) throws IOException{
+
         Parent parent = FXMLLoader.load(getClass().getResource("/View/ModifyProduct.fxml"));
         Scene scene = new Scene(parent);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -104,12 +154,18 @@ public class MainController implements Initializable {
         Platform.exit();
     }
 
+    public static Part getPartToModify() {
+        return partToModify;
+    }
+
     /**
      * Initializes  Table View and allows parts to be added and seen with the observable list.
      *
      * @param location Location resolves relative paths and the root for an object.
      * @param resources The resources that localize a root object.
      */
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Fills Part TableView

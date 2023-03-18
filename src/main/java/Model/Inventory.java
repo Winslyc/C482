@@ -45,11 +45,30 @@ public class Inventory {
     public  static int getNewProductID(){
         return ++productId;
     }
+
+    /**
+     * Deletes Parts from the Observable List all Parts
+     *
+     * @param selectedPart represents the part that will be deleted
+     * @return a boolean indicating successful part deletion.
+     */
     public static boolean deletePart(Part selectedPart){
-        return false;
+       allParts.remove(selectedPart);
+       if(allParts.contains(selectedPart)){
+           return false;
+       } else{
+           System.out.println("Part successfully deleted.");
+           return true;
+       }
     }
     public static boolean deleteProduct(Product selectedPart){
-        return false;
+        allProducts.remove(selectedPart);
+        if(allProducts.contains(selectedPart)){
+            return false;
+        } else{
+            System.out.println("Product successfully deleted.");
+            return true;
+        }
     }
 
 }

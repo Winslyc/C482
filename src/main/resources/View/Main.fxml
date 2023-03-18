@@ -14,7 +14,7 @@
    <children>
       <Pane layoutX="14.0" layoutY="54.0" prefHeight="241.0" prefWidth="407.0" style="-fx-background-color: ivory;">
          <children>
-            <TextField layoutX="215.0" layoutY="14.0" prefHeight="25.0" prefWidth="178.0" promptText="Search by part ID or Name" />
+            <TextField fx:id="partSearchTextField" layoutX="215.0" layoutY="14.0" prefHeight="25.0" prefWidth="178.0" promptText="Search by part ID or Name" />
             <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parts" wrappingWidth="65.33673095703125" />
             <TableView id="partTableView" fx:id="partTableView" layoutX="12.0" layoutY="50.0" prefHeight="143.0" prefWidth="384.0">
               <columns>
@@ -26,7 +26,7 @@
             </TableView>
             <Button fx:id="AddButton" layoutX="215.0" layoutY="203.0" mnemonicParsing="false" onAction="#onAddPartClicked" text="Add" />
             <Button layoutX="278.0" layoutY="203.0" mnemonicParsing="false" onAction="#onModifyPartClicked" text="Modify" />
-            <Button layoutX="341.0" layoutY="203.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0" text="Delete" />
+            <Button fx:id="partsDeleteButton" layoutX="341.0" layoutY="203.0" mnemonicParsing="false" onAction="#onDeleteClicked" prefHeight="25.0" prefWidth="53.0" text="Delete" />
          </children>
       </Pane>
       <Text layoutX="25.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory Management System" wrappingWidth="236.53668212890625" />
@@ -34,12 +34,12 @@
          <children>
             <TextField layoutX="215.0" layoutY="14.0" prefHeight="25.0" prefWidth="178.0" promptText="Search by Product ID or Name" />
             <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Products" wrappingWidth="65.33673095703125" />
-            <TableView layoutX="12.0" layoutY="50.0" prefHeight="143.0" prefWidth="384.0">
+            <TableView fx:id="ProductsTableView" layoutX="12.0" layoutY="50.0" prefHeight="143.0" prefWidth="384.0">
                <columns>
-                  <TableColumn prefWidth="75.0" text="Product ID" />
-                  <TableColumn prefWidth="86.39996337890625" text="Product Name" />
-                  <TableColumn prefWidth="98.39990234375" text="Inventory Level" />
-                  <TableColumn prefWidth="124.8001708984375" text="Price / Cost Per Unit" />
+                  <TableColumn fx:id="productIdColumn" prefWidth="75.0" text="Product ID" />
+                  <TableColumn fx:id="productNameColumn" prefWidth="86.39996337890625" text="Product Name" />
+                  <TableColumn fx:id="inventoryLevelColumn" prefWidth="98.39990234375" text="Inventory Level" />
+                  <TableColumn fx:id="productPriceColumn" prefWidth="124.8001708984375" text="Price / Cost Per Unit" />
                </columns>
             </TableView>
             <Button fx:id="addPartButton" layoutX="204.0" layoutY="203.0" mnemonicParsing="false" onAction="#onAddProductClicked" text="Add" />
