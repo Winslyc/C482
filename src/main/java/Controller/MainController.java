@@ -22,7 +22,13 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
+    /**
+     * The part to modify
+     */
     private static Part partToModify;
+    /**
+     * the product to modify
+     */
     private static Product productToModify;
     //Parts Table
     /**
@@ -71,7 +77,15 @@ public class MainController implements Initializable {
      * The Product Price Column
      */
     @FXML private TableColumn<Product, Double> productPriceColumn;
+    /**
+     * The product search text field
+     */
    @FXML private TextField productSearchTextField;
+
+    /**
+     * Deletes a product from the list of all products if no parts are associated with it
+     * @param event refers to an action event where the button is clicked
+     */
     @FXML private  void productsDeleteBtnAction(ActionEvent event){
          Product selectedProduct = productsTableView.getSelectionModel().getSelectedItem();
         if (selectedProduct == null) {
@@ -90,7 +104,12 @@ public class MainController implements Initializable {
         }
         }
     }
-
+    /**
+     * Searches for parts in list of all parts and updates the table view
+     *
+     ** @param event refers to the action event where a button is clicked
+     * @throws IOException from FXML Loader
+     * */
     @FXML private void partSearchBtnAction(ActionEvent event){
         ObservableList<Part> allParts = Inventory.getAllParts();
         ObservableList<Part> foundParts = FXCollections.observableArrayList();
@@ -106,11 +125,22 @@ public class MainController implements Initializable {
         displayAlert(1);
     }
     }
+    /**
+     * Refreshes the table view to show all products when the search bar is empty
+     *
+     ** @param event refers to the Keyevent event where a key is presssed
+     * */
     @FXML private void productSearchTextKeyPressed(KeyEvent event){
     if(productSearchTextField.getText().isEmpty()){
         productsTableView.setItems(Inventory.getAllProducts());
     }
     }
+    /**
+     * Searches for products in list of all products and updates the table view
+     *
+     ** @param event refers to the action event where a button is clicked
+     * @throws IOException from FXML Loader
+     * */
     @FXML private void productSearchBtnAction(ActionEvent event){
         ObservableList<Product> allProducts= Inventory.getAllProducts();
         ObservableList<Product> foundProducts = FXCollections.observableArrayList();
@@ -126,11 +156,21 @@ public class MainController implements Initializable {
             displayAlert(2);
         }
     }
+    /**
+     * Refreshes the table view to show all parts when the search bar is empty
+     *
+     ** @param event refers to the Keyevent event where a key is presssed
+     * */
     @FXML private void partSearchTextKeyPressed(KeyEvent event){
         if(partSearchTextField.getText().isEmpty()){
             partTableView.setItems(Inventory.getAllParts());
         }
     }
+    /**
+     * Opens Add Part form
+     * @param event refers to when the Modify product button is clicked
+     * @throws IOException from FXML Loader
+     */
     @FXML
     protected void onAddPartClicked(ActionEvent event) throws IOException {
     Parent parent =FXMLLoader.load(getClass().getResource("/View/AddPart.fxml"));
@@ -140,6 +180,11 @@ public class MainController implements Initializable {
     stage.show();
 
     }
+
+    /**
+     * Deletes a selected part from the inventory of parts
+     *
+     */
     @FXML
     private void onDeletePartClicked() {
         Part selectedPart = partTableView.getSelectionModel().getSelectedItem();
@@ -161,6 +206,11 @@ public class MainController implements Initializable {
 
         }
     }
+    /**
+     * Opens Modify Part form
+     * @param event refers to when the Modify part button is clicked
+     * @throws IOException from FXML Loader
+     */
     @FXML
     protected void onModifyPartClicked(ActionEvent event) throws IOException {
         partToModify = partTableView.getSelectionModel().getSelectedItem();
@@ -174,6 +224,11 @@ public class MainController implements Initializable {
             stage.show();
         }
     }
+    /**
+     * Displays an alert when an error occurs in use
+     *
+     * @param alertType  selects Error message to display
+     */
         private void displayAlert(int alertType) {
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -211,7 +266,11 @@ public class MainController implements Initializable {
         }
 
 
-
+    /**
+     * Opens Modify Product form
+     * @param event refers to when the Modify product button is clicked
+     * @throws IOException from FXML Loader
+     */
     @FXML
     protected void onModifyProductClicked(ActionEvent event) throws IOException{
         productToModify = productsTableView.getSelectionModel().getSelectedItem();
@@ -226,6 +285,12 @@ public class MainController implements Initializable {
         }
 
     }
+
+    /**
+     * Opens add product form
+     * @param event refers to when the add product button is clicked
+     * @throws IOException from FXML Loader
+     */
     @FXML
     protected void onAddProductClicked(ActionEvent event) throws IOException{
         Parent parent = FXMLLoader.load(getClass().getResource("/View/AddProduct.fxml"));
@@ -239,9 +304,20 @@ public class MainController implements Initializable {
         Platform.exit();
     }
 
+    /**
+     * Getter for part to modify
+     *
+     * @return part to modify
+     */
     public static Part getPartToModify() {
         return partToModify;
     }
+
+    /**
+     * Getter for the product to modify
+     *
+     * @return product to modify
+     */
     public static Product getProductToModify(){
        return productToModify;
     }
