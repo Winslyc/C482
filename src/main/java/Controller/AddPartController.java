@@ -16,34 +16,67 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AddPartController implements Initializable {
+    /**
+     * Checks if part is Inhouse;
+     */
     private boolean isPartInHouse;
+    /**
+     * The inhouse radio button
+     */
     @FXML
     private RadioButton inHouseRadioButton;
+    /**
+     * The toggle group for Radio buttons
+     */
     @FXML
     private ToggleGroup tgPartType;
+    /**
+     * The outsourced radio button
+     */
     @FXML
     private RadioButton outSourcedRadioButton;
-    @FXML
-    private TextField idTextField;
+    /**
+     * The Name Text Field
+     */
     @FXML
     private TextField nameTextField;
+    /**
+     * The inventory text field
+     */
     @FXML
     private TextField inventoryTextField;
+    /**
+     * The price text field
+     */
     @FXML
     private TextField priceTextField;
+    /**
+     *the part maximum text field
+     */
     @FXML
     private TextField maxTextField;
+    /**
+     * The minimum text field
+     */
     @FXML
     private TextField minTextField;
+    /**
+     * The machineID/Company Name text field
+     */
     @FXML
     private TextField machineIdTextField;
-    @FXML
-    private Button saveButton;
-    @FXML
-    private Button cancelButton;
-    @FXML
+    /**
+     * The machine id Text
+     */
+     @FXML
     private Text machineID;
 
+
+    /**
+     * Returns user to the main screen
+     *     ** @param event refers to the action event where a button is clicked
+     *      * @throws IOException from FXML Loader
+     */
 
     public void returnToMainScreen(ActionEvent event) throws IOException {
         System.out.println("Clicked");
@@ -53,6 +86,12 @@ public class AddPartController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    /**
+     * Cancels a part and returns user to the main screen
+     *
+     ** @param event refers to the action event where a button is clicked
+     * @throws IOException from FXML Loader
+     * */
     @FXML
     public void onCancelButtonClicked(ActionEvent event) throws IOException {
         Alert cancelAlert =new Alert(Alert.AlertType.WARNING);
@@ -62,7 +101,10 @@ public class AddPartController implements Initializable {
 
     }
 
-
+    /**
+     *Switches the radio button that is selected.
+     *
+     */
     @FXML
     public void radioButtonsToggled(){
         if(tgPartType.getSelectedToggle() == inHouseRadioButton) {
@@ -76,8 +118,13 @@ public class AddPartController implements Initializable {
         }
 
     }
-
-@FXML
+    /**
+     * Saves a new Part and adds it to Inventory
+     *
+     ** @param event refers to the action event where a button is clicked
+     * @throws IOException from FXML Loader
+     */
+    @FXML
     public void saveButtonEvent(ActionEvent event) throws  IOException{
         try {
             int id = 0;
@@ -127,6 +174,13 @@ public class AddPartController implements Initializable {
         }
     }
 
+    /**
+     *Checks if inputted inventory value is valid
+     *
+     * @param min the minimum inventory value
+     * @param max the maximum inventory value
+     * @param stock the current inventory stock
+     */
     private boolean checkInventory(int min, int max, int stock) {
         boolean isValid = true;
         if(stock > max  || stock < min ) {
@@ -135,7 +189,11 @@ public class AddPartController implements Initializable {
         }
         return isValid;
     }
-
+    /**
+     *Validates the part minimum being less than the max
+     * @param min the minimum inventory amount
+     * @param max the maximum inventory amount
+     */
     private boolean checkMin(int min, int max) {
         boolean isValid = true;
         if(min <= 0 || min >= max){
@@ -145,7 +203,11 @@ public class AddPartController implements Initializable {
 
         return isValid;
     }
-
+    /**
+     * Displays an alert when an error occurs in use
+     *
+     * @param displayAlert  selects Error message to display
+     */
     private void displayAlert(int displayAlert) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         switch(displayAlert) {
@@ -182,7 +244,12 @@ public class AddPartController implements Initializable {
                     break;
             }
         }
-
+    /**
+     * Initializes the Controller
+     *
+     * @param url the location used to resolve relative paths
+     * @param resourceBundle the resources used to localize the object root
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         inHouseRadioButton.setSelected(true);
