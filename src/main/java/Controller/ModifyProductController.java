@@ -23,6 +23,10 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**     FUTURE ENHANCEMENT
+ * Make it so that the parts list updates as keys are pressed instead of when enter is pressed.
+ *
+ */
 public class ModifyProductController implements Initializable {
     /**
      * The product to modify
@@ -137,6 +141,7 @@ public class ModifyProductController implements Initializable {
      ** @param event refers to the action event where a button is clicked
      * @throws IOException from FXML Loader
      * */
+
     @FXML private void partSearchBtnAction(ActionEvent event){
         ObservableList<Part> allParts = Inventory.getAllParts();
         ObservableList<Part> foundParts = FXCollections.observableArrayList();
@@ -158,6 +163,12 @@ public class ModifyProductController implements Initializable {
      *
      ** @param event refers to the Keyevent event where a key is presssed
      * */
+    /**
+     * RUNTIME ERROR
+     * key events will cause an error when used to set an action event in fxml.
+     * Created partSearchButton action to resolve error.
+     * @param event
+     */
     @FXML private void partSearchTextKeyPressed(KeyEvent event){
         if(partSearchTextField.getText().isEmpty()){
             allPartsTableView.setItems(Inventory.getAllParts());

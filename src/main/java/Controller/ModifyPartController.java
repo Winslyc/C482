@@ -88,8 +88,8 @@ public class ModifyPartController implements Initializable {
     private Part selectedPart;
     /**
      * Returns user to the main screen
-     *     ** @param event refers to the action event where a button is clicked
-     *      * @throws IOException from FXML Loader
+     *@param event refers to the action event where a button is clicked
+     * @throws IOException from FXML Loader
      */
     public void returnToMainScreen(ActionEvent event) throws IOException {
         System.out.println("Clicked");

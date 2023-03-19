@@ -38,7 +38,7 @@
                         <TableColumn fx:id="allPartsPriceColumn" prefWidth="130.79998779296875" text="Price / Cost per Unit" />
                     </columns>
                 </TableView>
-                <TableView fx:id="associatedPartsTableView" layoutX="416.0" layoutY="257.0" prefHeight="174.0" prefWidth="388.0">
+                <TableView fx:id="associatedPartsTableView" layoutX="416.0" layoutY="258.0" prefHeight="174.0" prefWidth="388.0">
                     <columns>
                         <TableColumn fx:id="associatedPartsIDColumn" prefWidth="75.0" text="Part ID" />
                         <TableColumn fx:id="associatedPartsNameColumn" prefWidth="75.0" text="Part Name" />
@@ -51,7 +51,7 @@
                 <Button fx:id="saveButton" layoutX="686.0" layoutY="448.0" mnemonicParsing="false" onAction="#onSaveButtonClicked" text="Save" />
                 <Button fx:id="cancelButton" layoutX="750.0" layoutY="448.0" mnemonicParsing="false" onAction="#onCancelButtonClicked" text="Cancel" />
             <Text layoutX="31.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modify Product" wrappingWidth="215.73669052124023" />
-            <TextField fx:id="partSearchTextField" layoutX="630.0" layoutY="31.0" onAction="#partSearchBtnAction" onKeyPressed="#partSearchTextKeyPressed" prefHeight="25.0" prefWidth="174.0" promptText="Search By ID or Name" />
+            <TextField fx:id="partSearchTextField" layoutX="630.0" layoutY="31.0" onAction="#partSearchBtnAction" onKeyPressed="#partSearchTextKeyPressed" onKeyReleased="#partSearchButtonAction" prefHeight="25.0" prefWidth="174.0" promptText="Search By ID or Name" />
             </children>
         </Pane>
     </children>

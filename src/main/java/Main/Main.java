@@ -10,6 +10,11 @@ import Model.*;
  * Main Class that provides the launcher for the inventory application
  */
 public class Main extends Application {
+    /**
+     * Creates Initial instance of the main form
+     * @param stage opens a window to view the main form
+     * @throws Exception
+     */
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/View/Main.fxml"));
@@ -19,6 +24,10 @@ public class Main extends Application {
         stage.show();
     }
 
+    /**
+     * Launches the application
+     * @param args
+     */
     public static void main(String[] args) {
 
         launch(args);
