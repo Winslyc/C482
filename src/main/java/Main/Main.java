@@ -8,6 +8,8 @@ import Model.*;
 
 /**
  * Main Class that provides the launcher for the inventory application
+ *
+ * The java docs are located in the Folder JavaDocs
  */
 public class Main extends Application {
     /**
